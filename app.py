@@ -2,7 +2,6 @@
 import asyncio
 
 import uvicorn
-
 import socketio
 
 sio = socketio.AsyncServer(async_mode='asgi')
