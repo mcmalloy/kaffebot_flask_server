@@ -6,7 +6,6 @@ async def receivemovementcommand(websocket, path):
     while True:
         command = await websocket.recv()
         print(f"Command:  {command}")
-
     # greeting = f"Hello {name}!"
 
     # await websocket.send(greeting)
