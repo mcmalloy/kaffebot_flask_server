@@ -16,12 +16,14 @@ async def listen(websocket, path):
         print(f"Command:  {command}")
         if command == "Moving Forward":
             print(command)
-            battery_json = getBattery()
-            if battery_json != "":
-                websocket.send(battery_json)
+            forwardMovement("Forward")
+        if command == "Reversing":
+            forwardMovement("Reversing")
+
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
-            forwardMovement()
+            websocket.send("Connected to ROS!")
+            forwardMovement("Forward")
         else:
             websocket.send("NotFound")
             print("NotFound")
