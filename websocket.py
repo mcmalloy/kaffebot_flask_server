@@ -20,13 +20,13 @@ async def listen(websocket, path):
             if battery_json != "":
                 websocket.send(battery_json)
         if command == "Test Connection":
+            print("Commanding robot to MOVE!!")
             forwardMovement()
         else:
             websocket.send("NotFound")
             print("NotFound")
 
 
-start_server = websockets.serve(test, "localhost", 8765)
-
+start_server = websockets.serve(test, port=8765)
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
