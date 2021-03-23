@@ -13,9 +13,9 @@ def angularMovement(angularmovement):
     move_cmd.linear.y = 0.0
     move_cmd.linear.z = 0.0
 
-    move_cmd.angular.x = angularmovement
+    move_cmd.angular.x = 0.0
     move_cmd.angular.y = 0.0
-    move_cmd.angular.z = 0.0
+    move_cmd.angular.z = angularmovement
 
     now = rospy.Time.now()
     rate = rospy.Rate(10)
