@@ -2,7 +2,7 @@ import asyncio
 import websockets
 from get_battery_data import getBattery
 from move_forward import forwardMovement
-
+from move_turn import angularMovement
 
 async def test(websocket, path):
     await listen(websocket, path)
@@ -13,6 +13,7 @@ async def listen(websocket, path):
     command = ""
     while command != "Stop":
         command = await websocket.recv()
+
         print(f"Command:  {command}")
         if command == "Moving Forward":
             print(command)
@@ -24,6 +25,10 @@ async def listen(websocket, path):
             print("Commanding robot to MOVE!!")
             websocket.send("Connected to ROS!")
             forwardMovement("Forward")
+        if command == "Turning Left":
+            angularMovement("Left")
+        if command == "Turning Right":
+            angularMovement("Right")
         else:
             websocket.send("NotFound")
             print("NotFound")
