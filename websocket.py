@@ -1,9 +1,9 @@
 import asyncio
 import websockets
 from get_battery_data import getBattery
+from move_forward import forwardMovement
 
 
-# from move_forward import forwardMovement
 async def test(websocket, path):
     await listen(websocket, path)
 
@@ -19,6 +19,8 @@ async def listen(websocket, path):
             battery_json = getBattery()
             if battery_json != "":
                 websocket.send(battery_json)
+        if command == "Test Connection":
+            forwardMovement()
         else:
             websocket.send("NotFound")
             print("NotFound")
