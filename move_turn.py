@@ -4,19 +4,16 @@ from geometry_msgs.msg import Twist
 
 
 def angularMovement(angularmovement):
+    print("Preparing to turn :3")
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
-
     move_cmd = Twist()
-    if angularmovement == "Right":
-        move_cmd.angular.x = 0.5
-    if angularmovement == "Left":
-        move_cmd.angular.x = -0.5
 
     move_cmd.linear.x = 0.0
     move_cmd.linear.y = 0.0
     move_cmd.linear.z = 0.0
 
+    move_cmd.angular.x = angularmovement
     move_cmd.angular.y = 0.0
     move_cmd.angular.z = 0.0
 
