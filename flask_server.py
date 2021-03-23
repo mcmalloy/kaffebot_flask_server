@@ -39,4 +39,5 @@ def test(size):
     print("roger that, i got the size: " + str(size))
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
