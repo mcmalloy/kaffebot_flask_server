@@ -1,14 +1,14 @@
 import asyncio
 import websockets
-from threading import Thread
+from get_battery_data import getBattery
 
 
 # from move_forward import forwardMovement
 async def test(websocket, path):
-    await receivemovementcommand(websocket, path)
+    await listen(websocket, path)
 
 
-async def receivemovementcommand(websocket, path):
+async def listen(websocket, path):
     print("---Readying method---")
     command = ""
     while command != "Stop":
@@ -16,8 +16,12 @@ async def receivemovementcommand(websocket, path):
         print(f"Command:  {command}")
         if command == "Moving Forward":
             print(command)
+            battery_json = getBattery()
+            if battery_json != "":
+                websocket.send(battery_json)
         else:
-            print("Did not understand command")
+            websocket.send("NotFound")
+            print("NotFound")
 
 
 start_server = websockets.serve(test, "localhost", 8765)
