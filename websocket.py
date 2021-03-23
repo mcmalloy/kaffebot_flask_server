@@ -21,9 +21,9 @@ async def listen(websocket, path):
         if command == "Reversing":
             forwardMovement("Reversing")
         if command == "Turning Left":
-            angularMovement(-0.5)
+            angularMovement(1.0)
         if command == "Turning Right":
-            angularMovement(0.5)
+            angularMovement(-1.0)
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
             websocket.send("Connected to ROS!")
