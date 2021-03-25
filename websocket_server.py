@@ -13,7 +13,7 @@ async def listen(websocket, path):
     command = ""
     while command != "Stop":
         command = await websocket.recv()
-        duration = await websocket.recv()
+        duration = float(await websocket.recv())
         print(f"Command:  {command}")
         print(f"Duration: {duration}")
         if command == "Moving Forward":
