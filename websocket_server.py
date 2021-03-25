@@ -29,7 +29,7 @@ async def listen(websocket, path):
             print("Commanding robot to MOVE!!")
             forwardMovement("Forward", duration)
         else:
-            print("NotFound")
+            print("NotFound1")
 
 
 start_server = websockets.serve(test, port=8765)
