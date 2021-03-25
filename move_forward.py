@@ -2,7 +2,7 @@
 import rospy
 from geometry_msgs.msg import Twist
 
-def forwardMovement(linearmovement):
+def forwardMovement(linearmovement,run_duration):
 	pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
 	rospy.init_node('move_pub', anonymous=True)
 
@@ -22,7 +22,7 @@ def forwardMovement(linearmovement):
 	now = rospy.Time.now()
 	rate = rospy.Rate(10)	
 
-	while rospy.Time.now() < now + rospy.Duration.from_sec(1):
+	while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
 		pub.publish(move_cmd)
 		rate.sleep()
 

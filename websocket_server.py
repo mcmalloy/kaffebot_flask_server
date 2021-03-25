@@ -1,8 +1,8 @@
 import asyncio
 import websockets
-from get_battery_data import getBattery
 from move_forward import forwardMovement
 from move_turn import angularMovement
+
 
 async def test(websocket, path):
     await listen(websocket, path)
@@ -13,13 +13,13 @@ async def listen(websocket, path):
     command = ""
     while command != "Stop":
         command = await websocket.recv()
-
+        duration = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
             print(command)
-            forwardMovement("Forward")
+            forwardMovement("Forward",duration)
         if command == "Reversing":
-            forwardMovement("Reversing")
+            forwardMovement("Reversing",duration)
         if command == "Turning Left":
             angularMovement(1.0)
         if command == "Turning Right":
