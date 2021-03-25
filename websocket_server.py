@@ -15,7 +15,7 @@ async def listen(websocket, path):
         command = await websocket.recv()
         duration = await websocket.recv()
         print(f"Command:  {command}")
-
+        print(f"Duration: {duration}")
         if command == "Moving Forward":
             print(command)
             forwardMovement("Forward", duration)
