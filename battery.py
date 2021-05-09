@@ -9,8 +9,18 @@ def callback(data):
 
 
 def listener():
-    rospy.init_node('battery_reader')
+    print("yo")
+    rospy.init_node('charge_pub')
     rospy.Subscriber("battery/charge", Float32, callback)
-    rospy.loginfo(rospy.Subscriber("battery/charge", Float32, callback))
+    val = rospy.get_param("~battery_charge", 30)
+    print("Got this value: ")
+    print(val)
+    rospy.loginfo(val)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
+
+if __name__ == '__main__':
+    try:
+        listener()
+    except rospy.ROSInterruptException:
+        pass
