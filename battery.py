@@ -18,7 +18,7 @@ def current_callback(data):
 
 
 def current_listener():
-    rospy.Subscriber("battery/current", Float32, current_callback())
+    rospy.Subscriber("battery/current", Float32, current_callback)
 
 
 def batterytemp_callback(data):
