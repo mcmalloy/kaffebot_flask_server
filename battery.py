@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # license removed for brevity
 import rospy
-from std_msgs.msg import Float32
+from std_msgs.msg import Int16
 
 
 def callback(data):
@@ -11,7 +11,7 @@ def callback(data):
 def listener():
     print("yo")
     rospy.init_node('charge_pub')
-    rospy.Subscriber("battery/temperature", Float32, callback)
+    rospy.Subscriber("battery/temperature", Int16, callback)
     val = rospy.get_param("~battery_temperature", 30)
     print("Got this value: ")
     print(val)
