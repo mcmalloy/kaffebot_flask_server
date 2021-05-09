@@ -11,8 +11,8 @@ def callback(data):
 def listener():
     print("yo")
     rospy.init_node('charge_pub')
-    rospy.Subscriber("battery/charge", Float32, callback)
-    val = rospy.get_param("~battery_charge", 30)
+    rospy.Subscriber("battery/temperature", Float32, callback)
+    val = rospy.get_param("~battery_temperature", 30)
     print("Got this value: ")
     print(val)
     rospy.loginfo(val)
