@@ -39,7 +39,6 @@ def listener():
     battery_charge_listener()
     battery_temp_listener()
     # spin() simply keeps python from exiting until this node is stopped
-    rospy.spin()
 
 if __name__ == '__main__':
     try:
