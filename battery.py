@@ -11,5 +11,6 @@ def callback(data):
 def listener():
     rospy.init_node('battery_reader')
     rospy.Subscriber("battery/charge", Float32, callback)
+    rospy.loginfo(rospy.Subscriber("battery/charge", Float32, callback))
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
