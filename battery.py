@@ -12,6 +12,7 @@ def voltage_callback(data):
 def voltage_listener():
     rospy.Subscriber("battery/voltage", Float32, voltage_callback)
 
+
 def current_callback(data):
     rospy.loginfo("Battery current: %s A", data.data)
 
@@ -23,14 +24,18 @@ def current_listener():
 def batterytemp_callback(data):
     rospy.loginfo("Battery temperature: %s C", data.data)
 
+
 def battery_temp_listener():
     rospy.Subscriber("battery/temperature", Int16,batterytemp_callback)
+
 
 def batterycharge_callback(data):
     rospy.loginfo("Battery charge: %s Ah", data.data)
 
+
 def battery_charge_listener():
     rospy.Subscriber("battery/charge", Float32, batterycharge_callback)
+
 
 def listener():
     rospy.init_node('battery_pub')
@@ -39,6 +44,7 @@ def listener():
     battery_charge_listener()
     battery_temp_listener()
     # spin() simply keeps python from exiting until this node is stopped
+
 
 if __name__ == '__main__':
     try:
