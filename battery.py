@@ -10,7 +10,6 @@ def voltage_callback(data):
 
 
 def voltage_listener():
-    rospy.init_node('charge_pub')
     rospy.Subscriber("battery/voltage", Float32, voltage_callback)
 
 def current_callback(data):
@@ -18,7 +17,6 @@ def current_callback(data):
 
 
 def current_listener():
-    rospy.init_node('current_pub')
     rospy.Subscriber("battery/current", Float32, voltage_callback)
 
 
@@ -26,17 +24,16 @@ def batterytemp_callback(data):
     rospy.loginfo("Battery temperature: %s C", data.data)
 
 def battery_temp_listener():
-    rospy.init_node('temp_pub')
     rospy.Subscriber("battery/temperature", Int16,batterytemp_callback)
 
 def batterycharge_callback(data):
     rospy.loginfo("Battery charge: %s Ah", data.data)
 
 def battery_charge_listener():
-    rospy.init_node('charge_pub')
     rospy.Subscriber("battery/charge", Float32, batterycharge_callback)
 
 def listener():
+    rospy.init_node('battery_pub')
     voltage_listener()
     current_listener()
     battery_charge_listener()
