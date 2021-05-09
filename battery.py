@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # license removed for brevity
 import rospy
+import time
 from std_msgs.msg import Float32
 from std_msgs.msg import Int16
 
@@ -40,8 +41,11 @@ def battery_charge_listener():
 def listener():
     rospy.init_node('battery_pub')
     voltage_listener()
+    time.sleep(0.5)
     current_listener()
+    time.sleep(0.5)
     battery_charge_listener()
+    time.sleep(0.5)
     battery_temp_listener()
     # spin() simply keeps python from exiting until this node is stopped
 
