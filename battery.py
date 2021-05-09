@@ -10,8 +10,7 @@ def voltage_callback(data):
 
 
 def voltage_listener():
-    voltage = rospy.Subscriber("battery/voltage", Float32)
-    print("FOUND THE VOLTAGE: %s", voltage)
+    rospy.Subscriber("battery/voltage", Float32, voltage_callback)
 
 
 def current_callback(data):
