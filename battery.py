@@ -2,20 +2,45 @@
 # license removed for brevity
 import rospy
 from std_msgs.msg import Float32
+from std_msgs.msg import Int16
 
 
-def callback(data):
-    rospy.loginfo("I heard %s V", data.data)
+def voltage_callback(data):
+    rospy.loginfo("Battery voltage: %s V", data.data)
 
+
+def voltage_listener():
+    rospy.init_node('charge_pub')
+    rospy.Subscriber("battery/voltage", Float32, voltage_callback)
+
+def current_callback(data):
+    rospy.loginfo("Battery current: %s A", data.data)
+
+
+def current_listener():
+    rospy.init_node('current_pub')
+    rospy.Subscriber("battery/current", Float32, voltage_callback)
+
+
+def batterytemp_callback(data):
+    rospy.loginfo("Battery temperature: %s C", data.data)
+
+def battery_temp_listener():
+    rospy.init_node('temp_pub')
+    rospy.Subscriber("battery/temperature", Int16,batterytemp_callback)
+
+def batterycharge_callback(data):
+    rospy.loginfo("Battery charge: %s Ah", data.data)
+
+def battery_charge_listener():
+    rospy.init_node('charge_pub')
+    rospy.Subscriber("battery/charge", Float32, batterycharge_callback)
 
 def listener():
-    print("yo")
-    rospy.init_node('charge_pub')
-    rospy.Subscriber("battery/voltage", Float32, callback)
-    val = rospy.get_param("~battery_voltage", 30)
-    print("Got this value: ")
-    print(val)
-    rospy.loginfo(val)
+    voltage_listener()
+    current_listener()
+    battery_charge_listener()
+    battery_temp_listener()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
