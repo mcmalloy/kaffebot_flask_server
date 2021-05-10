@@ -6,7 +6,6 @@ from geometry_msgs.msg import Twist
 def forwardMovement(linearmovement, run_duration):
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
-
     move_cmd = Twist()
     if linearmovement == "Forward":
         move_cmd.linear.x = 0.5
