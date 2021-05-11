@@ -34,5 +34,5 @@ def test(size):
 
 
 if __name__ == '__main__':
-    rospy.init_node('battery_pub')
     app.run(host='0.0.0.0')
+    rospy.init_node('battery_pub')
