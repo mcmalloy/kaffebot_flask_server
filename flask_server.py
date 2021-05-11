@@ -1,7 +1,7 @@
 import json
 from flask import Flask
 from flask import request
-
+import battery
 app = Flask(__name__)
 
 
@@ -9,17 +9,11 @@ app = Flask(__name__)
 def home():
     # FETCH DATA FROM PUBLISHER
     # RETURN DATA TO APPLICATION
-    batteryPercent = 76.5
-    batteryVoltage = 4.94
-    batteryCurrent = 1.2
-    # Python object (dict) called response:
-    response = {"batteryPercent": batteryPercent,
-        "batteryVoltage": batteryVoltage,
-        "batteryCurrent": batteryCurrent
-    }
-    # CONVERT TO JSON
-    jsonResponse = json.dumps(response)
-    return str(jsonResponse)
+
+    response = battery.fetchbatterydata()
+    print("Returning battery response: ")
+    print(response)
+    return response
 
 
 @app.route('/squaremovement', methods=['POST', 'GET'])

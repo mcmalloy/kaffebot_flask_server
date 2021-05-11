@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # license removed for brevity
 import rospy
-import time
+import json
 from std_msgs.msg import Float32
 from std_msgs.msg import Int16
 
@@ -37,6 +37,22 @@ def batterycharge_callback(data):
 def battery_charge_listener():
     rospy.Subscriber("battery/charge", Float32, batterycharge_callback)
 
+
+def fetchbatterydata():
+    rospy.init_node('battery_pub')
+    voltage = rospy.wait_for_message("battery/voltage", Float32, timeout=None)
+    current = rospy.wait_for_message("battery/current", Float32, timeout=None)
+    charge = rospy.wait_for_message("battery/charge", Float32, timeout=None)
+    temp = rospy.wait_for_message("battery/temperature", Int16, timeout=None)
+    cap = rospy.wait_for_message("battery/capacity", Float32, timeout=None)
+    response = {"batteryCharge": charge,
+                "batteryVoltage": voltage,
+                "batteryCurrent": current,
+                "batteryTemp": temp
+                }
+    # CONVERT TO JSON
+    jsonResponse = json.dumps(response)
+    return str(jsonResponse)
 
 def listener():
     rospy.init_node('battery_pub')
