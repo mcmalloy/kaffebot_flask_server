@@ -11,7 +11,6 @@ app = Flask(__name__)
 def home():
     # FETCH DATA FROM PUBLISHER
     # RETURN DATA TO APPLICATION
-    rospy.init_node('battery_pub')
     response = battery.fetchbatterydata()
     print("Returning battery response: ")
     print(response)
