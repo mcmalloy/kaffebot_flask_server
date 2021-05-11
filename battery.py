@@ -41,6 +41,7 @@ def battery_charge_listener():
 
 def fetchbatterydata():
     #rospy.init_node('battery_pub')
+    print("...Initializing ROS Node...")
     threading.Thread(target=lambda: rospy.init_node('battery_pub', disable_signals=True)).start()
     voltage = rospy.wait_for_message("battery/voltage", Float32, timeout=None)
     current = rospy.wait_for_message("battery/current", Float32, timeout=None)
@@ -53,6 +54,8 @@ def fetchbatterydata():
                 "batteryTemp": temp
                 }
     # CONVERT TO JSON
+    print("...Converting to JSON...")
+
     jsonResponse = json.dumps(response)
     return str(jsonResponse)
 
