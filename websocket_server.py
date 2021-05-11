@@ -13,24 +13,22 @@ async def listen(websocket, path):
     command = ""
     while command != "Stop":
         command = await websocket.recv()
-        duration = float(await websocket.recv())
         print(f"Command:  {command}")
-        print(f"Duration: {duration}")
         if command == "Moving Forward":
             print(command)
-            forwardMovement("Forward", duration)
+            forwardMovement("Forward")
             velocity = odom.fetch_odom_data()
             # Return velocity over websocket
             websocket.recv(velocity)
         if command == "Reversing":
-            forwardMovement("Reversing", duration)
+            forwardMovement("Reversing")
         if command == "Turning Left":
             angularMovement(1.0)
         if command == "Turning Right":
             angularMovement(-1.0)
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
-            forwardMovement("Forward", duration)
+            forwardMovement("Forward")
         else:
             print("NotFound1")
 
