@@ -55,10 +55,9 @@ def fetchbatterydata():
                 }
     # CONVERT TO JSON
     print("...Converting to JSON...")
-
-    jsonResponse = json.dumps(response)
-    print(jsonResponse)
-    return str(jsonResponse)
+    #jsonresponse = json.dumps(response)
+    #return str(jsonresponse)
+    return "woo"
 
 def listener():
     rospy.init_node('battery_pub')
