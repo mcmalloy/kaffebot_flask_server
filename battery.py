@@ -40,15 +40,14 @@ def battery_charge_listener():
 
 def listener():
     rospy.init_node('battery_pub')
-    x = rospy.wait_for_message("battery/voltage", Float32, timeout=None)
-    print("VOLTTTT: %s V", x)
-    voltage_listener()
-    current_listener()
-    battery_charge_listener()
-    battery_temp_listener()
-    rospy.Rate(1)
-    rospy.spin()
-    # spin() simply keeps python from exiting until this node is stopped
+    voltage = rospy.wait_for_message("battery/voltage", Float32, timeout=None)
+    current = rospy.wait_for_message("battery/current", Float32, timeout=None)
+    charge = rospy.wait_for_message("battery/charge", Float32, timeout=None)
+    temp = rospy.wait_for_message("battery/temperature", Int16, timeout=None)
+    print("Voltage: %s [V]", voltage)
+    print("Current: %s [A]", current)
+    print("Charge: %s [Ah]", charge)
+    print("Temperature: %s [C]", temp)
 
 
 if __name__ == '__main__':
