@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 import rospy
 import battery
+
 app = Flask(__name__)
 
 
@@ -10,6 +11,7 @@ app = Flask(__name__)
 def home():
     # FETCH DATA FROM PUBLISHER
     # RETURN DATA TO APPLICATION
+    rospy.init_node('battery_pub')
     response = battery.fetchbatterydata()
     print("Returning battery response: ")
     print(response)
@@ -34,5 +36,4 @@ def test(size):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
-    rospy.init_node('battery_pub')
+    app.run(debug=False, use_reloader=False, host='0.0.0.0')
