@@ -44,7 +44,7 @@ def listener():
     current = rospy.wait_for_message("battery/current", Float32, timeout=None)
     charge = rospy.wait_for_message("battery/charge", Float32, timeout=None)
     temp = rospy.wait_for_message("battery/temperature", Int16, timeout=None)
-    cap = rospy.wait_for_message("battery/capacity", Int16, timeout=None)
+    cap = rospy.wait_for_message("battery/capacity", Float32, timeout=None)
     print("Voltage: [V]", voltage)
     print("Current: [A]", current)
     print("Charge: [Ah]", charge)
