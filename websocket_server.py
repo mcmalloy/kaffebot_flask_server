@@ -2,7 +2,7 @@ import asyncio
 import websockets
 from move_forward import forwardMovement
 from move_turn import angularMovement
-
+import odom
 
 async def test(websocket, path):
     await listen(websocket, path)
@@ -19,6 +19,9 @@ async def listen(websocket, path):
         if command == "Moving Forward":
             print(command)
             forwardMovement("Forward", duration)
+            velocity = odom.fetch_odom_data()
+            # Return velocity over websocket
+            websocket.recv(velocity)
         if command == "Reversing":
             forwardMovement("Reversing", duration)
         if command == "Turning Left":
