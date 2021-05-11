@@ -14,8 +14,8 @@ def forwardMovement(linearmovement):
     if linearmovement == "Reversing":
         move_cmd.linear.x = -0.5
 
-    move_cmd.linear.y = 0.0
-    move_cmd.linear.z = 0.0
+    move_cmd.linear.y = 0.5
+    move_cmd.linear.z = 0.5
 
     move_cmd.angular.x = 0.0
     move_cmd.angular.y = 0.0
