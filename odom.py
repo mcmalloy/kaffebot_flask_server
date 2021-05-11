@@ -11,10 +11,12 @@ def fetch_odom_data():
     threading.Thread(target=lambda: rospy.init_node('battery_pub', disable_signals=True)).start()
     odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
     print("Odom data: ", odom_data.twist.twist.linear.x)
+    return odom_data.twist.twist.linear.x
 
 
 if __name__ == '__main__':
     try:
-        fetch_odom_data()
+        v_x = fetch_odom_data()
+        print("Linear velocity x: ", v_x)
     except rospy.ROSInterruptException:
         pass
