@@ -3,8 +3,9 @@ import rospy
 from geometry_msgs.msg import Twist
 
 
-def forwardMovement(linearmovement):
+def forwardMovement():
     run_duration = 0.1
+    linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
 
