@@ -15,11 +15,10 @@ async def listen(websocket, path):
         command = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
-            print(command)
             forwardMovement("Forward")
-            velocity = odom.fetch_odom_data()
+            #velocity = odom.fetch_odom_data()
             # Return velocity over websocket
-            websocket.recv(velocity)
+            #websocket.recv(velocity)
         if command == "Reversing":
             forwardMovement("Reversing")
         if command == "Turning Left":
