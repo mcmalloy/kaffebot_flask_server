@@ -50,8 +50,6 @@ def listener():
     print("Charge: [Ah]", charge)
     print("Temperature: [C]", temp)
     print("Capacity: [Ah]", cap)
-    percent = charge/cap
-    print(percent)
 
 
 if __name__ == '__main__':
