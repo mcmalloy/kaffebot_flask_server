@@ -48,16 +48,15 @@ def fetchbatterydata():
     charge = rospy.wait_for_message("battery/charge", Float32, timeout=None)
     temp = rospy.wait_for_message("battery/temperature", Int16, timeout=None)
     cap = rospy.wait_for_message("battery/capacity", Float32, timeout=None)
-    print("...Converting to JSON...")
-    percent = charge.data/cap.data
+
     response = {"batteryCharge": charge.data,
                 "batteryVoltage": voltage.data,
                 "batteryCurrent": current.data,
                 "batteryTemp": temp.data,
-                "batteryCapacity": cap.data,
-                "batteryPercent": percent
+                "batteryCapacity": cap.data
                 }
     return response
+
 
 def listener():
     rospy.init_node('battery_pub')
