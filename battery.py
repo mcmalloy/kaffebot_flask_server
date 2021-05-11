@@ -57,6 +57,7 @@ def fetchbatterydata():
     print("...Converting to JSON...")
 
     jsonResponse = json.dumps(response)
+    print(jsonResponse)
     return str(jsonResponse)
 
 def listener():
