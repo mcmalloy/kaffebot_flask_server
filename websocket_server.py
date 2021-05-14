@@ -4,6 +4,7 @@ from move_forward import forwardMovement
 from move_turn import angularMovement
 import odom
 import threading
+import rospy
 
 async def test(websocket, path):
     await listen(websocket, path)
