@@ -6,7 +6,7 @@ import websockets
 
 
 def forwardMovement(linearmovement, websocket):
-    run_duration = 4
+    run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
