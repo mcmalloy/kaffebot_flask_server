@@ -7,7 +7,7 @@ import asyncio
 
 
 
-def forwardMovement(linearmovement, websocket):
+async def forwardMovement(linearmovement, websocket):
     run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
@@ -33,7 +33,7 @@ def forwardMovement(linearmovement, websocket):
         pub.publish(move_cmd)
         velocity_x = odom.listen_to_odom()
         print("Velocity: ",velocity_x)
-        sendVelocity(velocity_x, websocket)
+        await sendVelocity(velocity_x, websocket)
         rate.sleep()
 
 async def sendVelocity(velocity, websocket):
