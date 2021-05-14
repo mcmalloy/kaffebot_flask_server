@@ -3,6 +3,7 @@ import websockets
 from move_forward import forwardMovement
 from move_turn import angularMovement
 import odom
+import threading
 
 async def test(websocket, path):
     await listen(websocket, path)
@@ -10,6 +11,7 @@ async def test(websocket, path):
 
 async def listen(websocket, path):
     print("---Readying method---")
+    threading.Thread(target=lambda: rospy.init_node('odom_sub', disable_signals=True)).start()
     command = ""
     while command != "Stop":
         command = await websocket.recv()
