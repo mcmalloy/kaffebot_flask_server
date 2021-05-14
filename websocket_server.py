@@ -27,10 +27,11 @@ async def listen(websocket, path):
             angularMovement(-1.0)
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
-            websocket.send("Roger that")
+            await websocket.send("Roger that")
             #forwardMovement("Forward")
         else:
             print("NotFound1")
+
 
 
 start_server = websockets.serve(test, port=8765)
