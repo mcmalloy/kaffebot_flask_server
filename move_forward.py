@@ -2,11 +2,12 @@
 import rospy
 from geometry_msgs.msg import Twist
 import odom
+import websockets
 
 
-def forwardMovement():
+def forwardMovement(linearmovement, websocket):
     run_duration = 4
-    linearmovement = "Forward"
+    #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
 
@@ -30,6 +31,7 @@ def forwardMovement():
         pub.publish(move_cmd)
         velocity_x = odom.listen_to_odom()
         print("Velocity: ",velocity_x)
+        websocket.send(velocity_x)
         rate.sleep()
 
 
