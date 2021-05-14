@@ -9,7 +9,7 @@ import move_forward
 
 def initialize_odom():
     print("...Initializing ROS Node...")
-    threading.Thread(target=lambda: rospy.init_node('battery_pub', disable_signals=True)).start()
+    threading.Thread(target=lambda: rospy.init_node('odom_sub', disable_signals=True)).start()
 
 def listen_to_odom():
     odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
