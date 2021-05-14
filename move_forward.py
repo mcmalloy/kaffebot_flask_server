@@ -33,6 +33,7 @@ async def forwardMovement(linearmovement, websocket):
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
         velocity_x = odom.listen_to_odom()
+
         print("Velocity: ",velocity_x)
         await sendVelocity(velocity_x, websocket)
         rate.sleep()

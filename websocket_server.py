@@ -12,7 +12,6 @@ async def test(websocket, path):
 
 async def listen(websocket, path):
     print("---Readying method---")
-    threading.Thread(target=lambda: rospy.init_node('odom_sub', disable_signals=True)).start()
     command = ""
     while command != "Stop":
         command = await websocket.recv()
