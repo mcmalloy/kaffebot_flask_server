@@ -17,7 +17,7 @@ async def forwardMovement(linearmovement, websocket):
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
-    rospy.Subscriber("odom", Odometry, odomCallback(websocket))
+    # rospy.Subscriber("odom", Odometry, odomCallback(websocket))
     move_cmd = Twist()
     if linearmovement == "Forward":
         move_cmd.linear.x = 0.5

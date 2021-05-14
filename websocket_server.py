@@ -17,7 +17,7 @@ async def listen(websocket, path):
         command = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
-            await forwardMovement("Forward",websocket)
+            forwardMovement("Forward",websocket)
             #velocity = odom.fetch_odom_data()
             # Return velocity over websocket
             #websocket.recv(velocity)
