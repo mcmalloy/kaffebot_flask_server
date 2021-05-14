@@ -7,10 +7,10 @@ import threading
 import rospy
 
 async def test(websocket, path):
-    await listen(websocket, path)
+    listen(websocket, path)
 
 
-async def listen(websocket, path):
+def listen(websocket, path):
     print("---Readying method---")
     command = ""
     while command != "Stop":
