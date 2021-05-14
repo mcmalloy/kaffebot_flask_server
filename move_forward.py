@@ -12,7 +12,7 @@ async def odomCallback(odom, websocket):
     print("Velocity: ", odom.twist.twist.linear.x)
     await websocket.send(odom.twist.twist.linear.x)
 
-async def forwardMovement(linearmovement, websocket):
+def forwardMovement(linearmovement, websocket):
     run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
