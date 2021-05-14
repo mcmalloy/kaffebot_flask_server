@@ -5,15 +5,19 @@ import odom
 import websockets
 import asyncio
 import threading
+from nav_msgs.msg import Odometry
 
 
+async def odomCallback(odom, websocket):
+    print("Velocity: ", odom.twist.twist.linear.x)
+    await websocket.send(odom.twist.twist.linear.x)
 
 async def forwardMovement(linearmovement, websocket):
     run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
-
+    rospy.Subscriber("odom", Odometry, odomCallback(websocket))
     move_cmd = Twist()
     if linearmovement == "Forward":
         move_cmd.linear.x = 0.5
@@ -32,10 +36,9 @@ async def forwardMovement(linearmovement, websocket):
     odom.initialize_odom()
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
-        velocity_x = odom.listen_to_odom()
-
-        print("Velocity: ",velocity_x)
-        await sendVelocity(velocity_x, websocket)
+        #velocity_x = odom.listen_to_odom()
+        #print("Velocity: ",velocity_x)
+        #await sendVelocity(velocity_x, websocket)
         rate.sleep()
 
 async def sendVelocity(velocity, websocket):
