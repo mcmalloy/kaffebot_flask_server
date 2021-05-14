@@ -31,8 +31,11 @@ def forwardMovement(linearmovement, websocket):
         pub.publish(move_cmd)
         velocity_x = odom.listen_to_odom()
         print("Velocity: ",velocity_x)
-        websocket.send(velocity_x)
+        sendVelocity(velocity_x, websocket)
         rate.sleep()
+
+async def sendVelocity(velocity, websocket):
+    await websocket.send(velocity)
 
 
 if __name__ == '__main__':
