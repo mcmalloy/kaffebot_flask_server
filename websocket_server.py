@@ -3,6 +3,7 @@ import websockets
 from move_forward import forwardMovement
 from move_turn import angularMovement
 import odom
+import rospy
 from nav_msgs.msg import Odometry
 
 async def test(websocket, path):
