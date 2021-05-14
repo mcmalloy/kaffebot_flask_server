@@ -12,7 +12,6 @@ def initialize_odom():
     threading.Thread(target=lambda: rospy.init_node('odom_sub', disable_signals=True)).start()
 
 def listen_to_odom():
-    odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
     return odom_data.twist.twist.linear.x
 
 
