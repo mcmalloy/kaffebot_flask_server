@@ -28,7 +28,7 @@ async def listen(websocket, path):
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
             websocket.send("Roger that")
-            forwardMovement("Forward")
+            #forwardMovement("Forward")
         else:
             print("NotFound1")
 
