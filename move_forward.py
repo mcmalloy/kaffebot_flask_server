@@ -5,7 +5,7 @@ import odom
 
 
 def forwardMovement():
-    run_duration = 0.5
+    run_duration = 4
     linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
