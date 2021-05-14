@@ -4,19 +4,22 @@ import rospy
 import json
 from nav_msgs.msg import Odometry
 import threading
+import move_forward
 
 
-def fetch_odom_data():
+def initialize_odom():
     print("...Initializing ROS Node...")
     threading.Thread(target=lambda: rospy.init_node('battery_pub', disable_signals=True)).start()
+
+def listen_to_odom():
     odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
-    print("Odom data: ", odom_data.twist.twist.linear.x)
     return odom_data.twist.twist.linear.x
 
 
 if __name__ == '__main__':
     try:
-        v_x = fetch_odom_data()
+        initialize_odom()
+        v_x = listen_to_odom()
         print("Linear velocity x: ", v_x)
     except rospy.ROSInterruptException:
         pass

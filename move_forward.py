@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import Twist
+import odom
 
 
 def forwardMovement():
-    run_duration = 5
+    run_duration = 0.5
     linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('move_pub', anonymous=True)
@@ -24,9 +25,11 @@ def forwardMovement():
 
     now = rospy.Time.now()
     rate = rospy.Rate(10)
-
+    odom.initialize_odom()
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
+        velocity_x = odom.listen_to_odom()
+        print("Velocity: ",velocity_x)
         rate.sleep()
 
 
