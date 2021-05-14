@@ -3,9 +3,14 @@ import websockets
 from move_forward import forwardMovement
 from move_turn import angularMovement
 import odom
+from nav_msgs.msg import Odometry
 
 async def test(websocket, path):
     await listen(websocket, path)
+
+
+def odom_callback(data):
+    print("Velocity: ", data)
 
 
 async def listen(websocket, path):
@@ -15,6 +20,9 @@ async def listen(websocket, path):
         command = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
+            rospy.init_node('odom_node', anonymous=True)
+            rospy.Subscriber("odom", odom_callback)
+
             forwardMovement("Forward",websocket)
             #velocity = odom.fetch_odom_data()
             # Return velocity over websocket
