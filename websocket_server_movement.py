@@ -19,10 +19,7 @@ async def listen(websocket, path):
         print(f"Command:  {command}")
         if command == "Moving Forward":
             rospy.init_node('movement_node', anonymous=True)
-            forwardMovement("Forward",websocket)
-            #velocity = odom.fetch_odom_data()
-            # Return velocity over websocket
-            #websocket.recv(velocity)
+            await forwardMovement("Forward",websocket)
         if command == "Reversing":
             forwardMovement("Reversing", websocket)
         if command == "Turning Left":
