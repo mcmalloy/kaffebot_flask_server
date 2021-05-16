@@ -23,6 +23,7 @@ def forwardMovement(linearmovement):
 
     now = rospy.Time.now()
     rate = rospy.Rate(10)
+    print("publishing cmd_vel")
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
         rate.sleep()
