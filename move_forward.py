@@ -5,7 +5,7 @@ import asyncio
 
 
 
-async def forwardMovement(linearmovement):
+def forwardMovement(linearmovement):
     run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
@@ -27,7 +27,6 @@ async def forwardMovement(linearmovement):
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
         rate.sleep()
-    return "done"
 
 
 if __name__ == '__main__':
