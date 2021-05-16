@@ -19,9 +19,8 @@ async def listen(websocket, path):
         if command == "OdomStream":
             rospy.init_node('odom_node', anonymous=True)
             odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
-            print("Odom data: ", odom_data)
-            print("Odom data2: ", odom_data.twist.twist.linear.x)
-            print("Odom data3: ", odom_data.data.twist.twist.linear.x)
+            #print("Odom data: ", odom_data) #Shows entire odometry data
+            print("Velocity m/s: ", odom_data.twist.twist.linear.x) #Shows only linear x movement
         if command == "Test Connection":
             print("Commanding robot to MOVE!!")
             await websocket.send("Roger that")

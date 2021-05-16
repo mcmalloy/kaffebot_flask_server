@@ -32,6 +32,6 @@ async def forwardMovement(linearmovement):
 
 if __name__ == '__main__':
     try:
-        forwardMovement()
+        forwardMovement("Forward")
     except rospy.ROSInterruptException:
         pass
