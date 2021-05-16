@@ -9,7 +9,6 @@ def forwardMovement(linearmovement):
     run_duration = 0.5
     #linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
-
     move_cmd = Twist()
     if linearmovement == "Forward":
         move_cmd.linear.x = 0.5

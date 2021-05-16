@@ -16,7 +16,7 @@ async def listen(websocket, path):
     while command != "Stop":
         command = await websocket.recv()
         print(f"Command:  {command}")
-        if command == "o":
+        if command == "OdomStream":
             rospy.init_node('odom_node', anonymous=True)
             odom_data = rospy.wait_for_message("odom", Odometry, timeout=None)
             print("Odom data: ", odom_data)
@@ -27,7 +27,7 @@ async def listen(websocket, path):
             await websocket.send("Roger that")
             #forwardMovement("Forward")
         else:
-            print("NotFound1")
+            print("websocket message NotFound")
 
 
 start_server = websockets.serve(test, port=8766)
