@@ -18,7 +18,6 @@ async def listen(websocket, path):
         command = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
-            rospy.init_node('movement_node', anonymous=True)
             await forwardMovement("Forward",websocket)
         if command == "Reversing":
             forwardMovement("Reversing", websocket)
