@@ -18,7 +18,7 @@ async def listen(websocket, path):
         command = await websocket.recv()
         print(f"Command:  {command}")
         if command == "Moving Forward":
-            await forwardMovement("Forward",websocket)
+            await forwardMovement("Forward")
         if command == "Reversing":
             forwardMovement("Reversing", websocket)
         if command == "Turning Left":
