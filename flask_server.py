@@ -1,9 +1,8 @@
 import json
 from flask import Flask
 from flask import request
-import rospy
 import battery
-
+import move_forward
 app = Flask(__name__)
 
 
@@ -17,22 +16,17 @@ def home():
     return response
 
 
-@app.route('/squaremovement', methods=['POST', 'GET'])
-def squaremovement():
+@app.route('/move', methods=['POST', 'GET', 'DELETE'])
+def move():
+    command = str(request.args.get('command', None))
     if request.method == 'GET':
-        print("Getting last known data of square movement")
+        # Call movement method
         return "Getting last known data of square movement"
     if request.method == 'POST':
-        size = float(request.args.get('size', None))
-        print("Posting new square movement with this size: ")
-        print(size)
-        test(size)
+        print(str(request.args.get('command', None)))
+        move_forward.forwardMovement(str(request.args.get('command', None)))
         return 'OK'
 
 
-def test(size):
-    print("roger that, i got the size: " + str(size))
-
-
 if __name__ == '__main__':
-    app.run(debug=False, use_reloader=False, host='0.0.0.0')
+    app.run(debug=False, use_reloader=False, host='localhost')

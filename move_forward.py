@@ -4,17 +4,19 @@ from geometry_msgs.msg import Twist
 import asyncio
 
 
-
 def forwardMovement(linearmovement):
     rospy.init_node('movement_node', anonymous=True)
     run_duration = 0.5
-    #linearmovement = "Forward"
+    # linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     move_cmd = Twist()
     if linearmovement == "Forward":
         move_cmd.linear.x = 0.5
     if linearmovement == "Reversing":
         move_cmd.linear.x = -0.5
+    if linearmovement == "Stop":
+        move_cmd.linear.x = 0.0
+        run_duration = 0.05
 
     move_cmd.linear.y = 0.5
     move_cmd.linear.z = 0.5
