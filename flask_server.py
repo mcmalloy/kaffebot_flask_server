@@ -1,8 +1,6 @@
 import json
 from flask import Flask
 from flask import request
-import battery
-import move_forward
 app = Flask(__name__)
 
 
@@ -10,7 +8,12 @@ app = Flask(__name__)
 def home():
     # FETCH DATA FROM PUBLISHER
     # RETURN DATA TO APPLICATION
-    response = battery.fetchbatterydata()
+    response = {"batteryCharge": 2.1,
+                "batteryVoltage": 14.4,
+                "batteryCurrent": 0.1,
+                "batteryTemp": 25,
+                "batteryCapacity": 2.6
+                }
     print("Returning battery response: ")
     print(response)
     return response
@@ -25,7 +28,7 @@ def move():
     if request.method == 'POST':
         # Odom movement should be logged in the duration and returned with JSON
         print(str(request.args.get('command', None)))
-        move_forward.forwardMovement(str(request.args.get('command', None)))
+        #move_forward.forwardMovement(str(request.args.get('command', None)))
         return 'OK'
 
 
