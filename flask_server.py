@@ -23,6 +23,7 @@ def move():
         # Call movement method
         return "Getting last known data of square movement"
     if request.method == 'POST':
+        # Odom movement should be logged in the duration and returned with JSON
         print(str(request.args.get('command', None)))
         move_forward.forwardMovement(str(request.args.get('command', None)))
         return 'OK'
