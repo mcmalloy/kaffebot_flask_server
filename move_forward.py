@@ -7,7 +7,6 @@ import asyncio
 def forwardMovement(linearmovement):
     rospy.init_node('movement_node', anonymous=True)
     run_duration = 0.5
-    # linearmovement = "Forward"
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     move_cmd = Twist()
     if linearmovement == "Forward":
@@ -29,6 +28,7 @@ def forwardMovement(linearmovement):
     print("publishing cmd_vel")
     while rospy.Time.now() < now + rospy.Duration.from_sec(run_duration):
         pub.publish(move_cmd)
+        # Listen to odom
         rate.sleep()
 
 
