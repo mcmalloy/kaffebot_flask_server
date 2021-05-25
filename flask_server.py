@@ -42,6 +42,9 @@ def move():
         elif command == "left":
             return {"velocity": 0,
                     "rotation": -1*random.randrange(0, 10, 1)}
+        elif command == "stop":
+            return {"velocity": 0,
+                    "rotation": 0}
         else:
             return{"Error"}
 
