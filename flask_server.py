@@ -1,6 +1,7 @@
 import json
 from flask import Flask
 from flask import request
+import random
 app = Flask(__name__)
 
 
@@ -29,7 +30,16 @@ def move():
         # Odom movement should be logged in the duration and returned with JSON
         print(str(request.args.get('command', None)))
         #move_forward.forwardMovement(str(request.args.get('command', None)))
-        return 'OK'
+        if command == "forward":
+            return {"velocity": random.randrange(1, 3, 0.1)}
+        elif command == "backwards":
+            return {"velocity": -1*random.randrange(1, 3, 0.1)}
+        elif command == "right":
+            return {"rotation": random.randrange(0, 1, 0.1)}
+        elif command == "left":
+            return {"rotation": -1*random.randrange(0, 1, 0.1)}
+        else:
+            return{"Error"}
 
 
 if __name__ == '__main__':
